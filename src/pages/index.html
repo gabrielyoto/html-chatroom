@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolha uma sala</title>
+  </head>
+  <body>
+    <form>
+      <label for="nick">Nick</label>
+      <input type="text" name="nick" id="nick" />
+      <label for="nick">Sala</label>
+      <input type="text" name="sala" id="sala" />
+      <button id="submit">Entrar</button>
+    </form>
+    <script>
+      document.getElementById('submit').addEventListener('click', (e) => {
+        const form = {
+          nick: document.getElementById('nick').value,
+          sala: document.getElementById('sala').value,
+        };
+        e.preventDefault();
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('post', 'join');
+        xhttp.setRequestHeader('Content-type', 'application/json');
+        xhttp.send(JSON.stringify(form));
+        window.location.href = `${form.sala}?nick=${form.nick}`;
+      });
+    </script>
+  </body>
+</html>
